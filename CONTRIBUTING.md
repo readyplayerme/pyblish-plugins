@@ -61,8 +61,10 @@ Start with your changes!
 
 ### Commit your update
 
-Commit the changes once you are happy with them.
+Once you are happy with your changes, it's time to commit them.
 Use [Conventional Commit messages](https://www.conventionalcommits.org/en/v1.0.0/).  
+[Sign](https://docs.github.com/en/authentication/managing-commit-signature-verification/signing-commits) your commits!
+
 Keep your individual commits small, so any breaking change can more easily be traced back to a commit.
 A commit ideally only changes one single responsibility at a time.
 If you keep the whole of your changes small and the branch short-lived, there's less risk to run into any other conflicts that can arise with the base.

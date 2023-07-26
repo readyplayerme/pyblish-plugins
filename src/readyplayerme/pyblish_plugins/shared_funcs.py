@@ -1,27 +1,29 @@
 """Shared functions used in readyplayerme.pyblish_plugins."""
 
 import functools
-from typing import Any, Dict, Iterable, List, Optional, Tuple, Union, Callable
+from collections.abc import Callable, Iterable
+from typing import Any
 
-import bmesh
 import bpy
 import numpy as np
 
+import bmesh  # isort: skip
+
 
 def context_window(func: Callable):
-    """
-    Support running operators from QT (ex. on button click).
-    Decorator to override the context window for a function,
+    """Decorator to override the context window for a function,
+
+    Support running operators from Qt (e.g. on button click).
     """
 
-    def wrapper(*args, **kwargs):
+    def _wrapper(*args, **kwargs):
         with bpy.context.temp_override(window=bpy.context.window_manager.windows[0]):
             return func(*args, **kwargs)
 
-    return wrapper
+    return _wrapper
 
 
-def find_users(ID: str):
+def find_users(id_: str):
     """Find all objects that use the given ID."""
 
     def get_users(prop_collection):
@@ -29,7 +31,7 @@ def find_users(ID: str):
 
         :type prop_collection: bpy.types.bpy_prop_collection
         """
-        ret = tuple(o for o in prop_collection if o.user_of_id(ID))
+        ret = tuple(o for o in prop_collection if o.user_of_id(id_))
         return ret or None
 
     # Filter out None returns from get_users.
@@ -52,7 +54,7 @@ def deselect_objects():
         obj.select_set(False)
 
 
-def select_all(mesh: bpy.types.Mesh, deselect: bool = False):
+def select_all(mesh: bpy.types.Mesh, *, deselect: bool = False):
     """Select/deselect all components."""
     if mesh.is_editmode:
         select_all_bmesh(mesh, deselect=deselect)
@@ -63,7 +65,7 @@ def select_all(mesh: bpy.types.Mesh, deselect: bool = False):
         mesh.update()
 
 
-def select_components(mesh: bpy.types.Mesh, indices: Union[List, np.ndarray], component: str = "VERT"):
+def select_components(mesh: bpy.types.Mesh, indices: list | np.ndarray, component: str = "VERT"):
     """Select vertices with indices, deselect others.
 
     :param component: one in {'VERT', 'EDGE', 'FACE'}
@@ -123,7 +125,7 @@ def get_bmesh(mesh: bpy.types.Mesh) -> bmesh.types.BMesh:
     return bm
 
 
-def select_all_bmesh(mesh: bpy.types.Mesh, deselect=False):
+def select_all_bmesh(mesh: bpy.types.Mesh, *, deselect=False):
     """Select all vertices using bmesh."""
     # Get mesh data depending on current mode.
     bm = get_bmesh(mesh)
@@ -154,7 +156,7 @@ def deselect_all_bmesh(mesh: bpy.types.Mesh):
     select_all_bmesh(mesh, deselect=True)
 
 
-def get_transforms(obj: bpy.types.Object) -> Dict[str, Tuple[float, float, float]]:
+def get_transforms(obj: bpy.types.Object) -> dict[str, tuple[float, float, float]]:
     """Return location, rotation (Euler), and scale of the object, as well as their delta transforms.
 
     :param obj: Object from which to retrieve transforms.
@@ -172,7 +174,7 @@ def get_transforms(obj: bpy.types.Object) -> Dict[str, Tuple[float, float, float
     }
 
 
-def get_collections(obj: bpy.types.Object) -> List[str]:
+def get_collections(obj: bpy.types.Object) -> list[str]:
     """Return names of collections the object is linked to.
 
     :param obj: Object of interest.
@@ -215,7 +217,7 @@ def set_active_collection(collection: str):
         raise
 
 
-def get_uvmap_names(mesh: bpy.types.Mesh) -> List[str]:
+def get_uvmap_names(mesh: bpy.types.Mesh) -> list[str]:
     """Return names of all UV maps on the mesh.
 
     :param mesh: Mesh of interest.
@@ -256,7 +258,7 @@ def get_uvs(mesh: bpy.types.Mesh, uv_layer_index: int = 0) -> np.ndarray:
     return uvs
 
 
-def calc_2D_poly_area(x: np.ndarray, y: np.ndarray) -> float:
+def calc_2d_poly_area(x: np.ndarray, y: np.ndarray) -> float:
     """Calculate the area of a polygon from the coordinates of its points."""
     # Coordinate shift. Avoids precision errors with big values. Not an issue with 0-1 UV range.
     x_ = x - x.mean()
@@ -281,7 +283,7 @@ def get_uv_area(mesh: bpy.types.Mesh) -> np.ndarray:
     loop_indices = [polygon.loop_indices for polygon in mesh.polygons]
     area = np.empty(len(loop_indices))
     for i, polygon_loop in enumerate(loop_indices):
-        area[i] = calc_2D_poly_area(uvs[polygon_loop, 0], uvs[polygon_loop, 1])
+        area[i] = calc_2d_poly_area(uvs[polygon_loop, 0], uvs[polygon_loop, 1])
     return area
 
 
@@ -355,10 +357,11 @@ def get_mesh_by_name(name: str) -> bpy.types.Mesh:
     try:
         return bpy.data.meshes[name]
     except KeyError as e:
-        raise ValueError(f"Mesh '{name}' not found.") from e
+        msg = f"Mesh '{name}' not found."
+        raise ValueError(msg) from e
 
 
-def object_from_mesh(mesh: bpy.types.Mesh) -> Optional[bpy.types.Object]:
+def object_from_mesh(mesh: bpy.types.Mesh) -> bpy.types.Object | None:
     """Return the first object found that uses the mesh data-block.
 
     :param mesh: Mesh for which to search its parent object.
@@ -372,7 +375,9 @@ def object_from_mesh(mesh: bpy.types.Mesh) -> Optional[bpy.types.Object]:
 def get_skin_weights(mesh: bpy.types.Mesh) -> np.ndarray:
     """Get skin weights for each vertex and vertex group."""
     parent = object_from_mesh(mesh)
-    assert parent is not None, f"Mesh '{mesh.name}' has no parent object. Can't access vertex groups."
+    if parent is None:
+        msg = f"Mesh '{mesh.name}' has no parent object. Can't access vertex groups."
+        raise AttributeError(msg)
     n_groups = len(parent.vertex_groups)
     weights = np.zeros((len(mesh.vertices), n_groups), dtype=np.float32)
     for vert in mesh.vertices:
@@ -387,13 +392,15 @@ def get_skin_weights(mesh: bpy.types.Mesh) -> np.ndarray:
 def get_vertex_groups_name(mesh: bpy.types.Mesh) -> dict:
     """Get vertex groups (bones that influences the vertex) for each vertex"""
     parent = object_from_mesh(mesh)
-    assert parent is not None, f"Mesh '{mesh.name}' has no parent object. Can't access vertex groups."
+    if parent is None:
+        msg = f"Mesh '{mesh.name}' has no parent object. Can't access vertex groups."
+        raise AttributeError(msg)
 
     # Create vertex group lookup dictionary for names.
     vgroup_names = {vgroup.index: vgroup.name for vgroup in parent.vertex_groups}
 
     # Create dictionary of vertex group assignments per vertex.
-    vgroups = {v.index: [vgroup_names[g.group] for g in v.groups] for v in parent.data.vertices}  # noqa
+    vgroups = {v.index: [vgroup_names[g.group] for g in v.groups] for v in parent.data.vertices}
 
     # Returning without assigning to the var vgroups fails.
     return vgroups

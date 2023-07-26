@@ -1,7 +1,8 @@
 """Validate the texture sampler wrapping modes are not set to 'REPEAT' because of MIP mapping."""
 import pyblish.api
-from rpm_pyblish_plugins.action_material_setsamplerwrapping import MaterialSetSamplerWrapping
-from rpm_pyblish_plugins.action_plugin_openurl import OpenURL
+
+from readyplayerme.pyblish_plugins.action_material_setsamplerwrapping import MaterialSetSamplerWrapping
+from readyplayerme.pyblish_plugins.action_plugin_openurl import OpenURL
 
 
 class MaterialSamplerWrapping(pyblish.api.InstancePlugin):

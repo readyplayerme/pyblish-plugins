@@ -1,7 +1,8 @@
 """Validate the material has backface culling enabled."""
 import pyblish.api
-from rpm_pyblish_plugins.action_material_setbackfaceculling import MaterialEnableBackfaceCulling
-from rpm_pyblish_plugins.action_plugin_openurl import OpenURL
+
+from readyplayerme.pyblish_plugins.action_material_setbackfaceculling import MaterialEnableBackfaceCulling
+from readyplayerme.pyblish_plugins.action_plugin_openurl import OpenURL
 
 
 class MaterialBackfaceCulling(pyblish.api.InstancePlugin):

@@ -1,6 +1,7 @@
 """Valiate the amount of rigs in the blend file."""
 import pyblish.api
-from rpm_pyblish_plugins.action_plugin_openurl import OpenURL
+
+from readyplayerme.pyblish_plugins.action_plugin_openurl import OpenURL
 
 
 class RigCount(pyblish.api.InstancePlugin):

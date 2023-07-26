@@ -1,7 +1,8 @@
 import numpy as np
 import pyblish.api
-from rpm_pyblish_plugins.action_mesh_selectzeroareapolygons import MeshSelectZeroAreaPolygons
-from rpm_pyblish_plugins.shared_funcs import get_mesh_by_name, get_polygon_area
+
+from readyplayerme.pyblish_plugins.action_mesh_selectzeroareapolygons import MeshSelectZeroAreaPolygons
+from readyplayerme.pyblish_plugins.shared_funcs import get_mesh_by_name, get_polygon_area
 
 
 class MeshTopologyPolygonArea(pyblish.api.InstancePlugin):
@@ -20,7 +21,9 @@ class MeshTopologyPolygonArea(pyblish.api.InstancePlugin):
         areas = get_polygon_area(mesh)
         zero_area_indices = np.argwhere(np.isclose(areas, 0.0)).flatten()
         if zero_area_indices.size:
-            self.log.warning(f"{zero_area_indices.shape[0]} Faces with zero area detected. "
-                             f"You can use the {MeshSelectZeroAreaPolygons.label} actions in the context menu "
-                             "of this validation to select the faces. "
-                             f"Invalid face indices: {zero_area_indices.tolist()}")
+            self.log.warning(
+                f"{zero_area_indices.shape[0]} Faces with zero area detected. "
+                f"You can use the {MeshSelectZeroAreaPolygons.label} actions in the context menu "
+                "of this validation to select the faces. "
+                f"Invalid face indices: {zero_area_indices.tolist()}"
+            )

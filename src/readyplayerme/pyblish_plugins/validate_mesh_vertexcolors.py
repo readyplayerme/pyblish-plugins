@@ -1,7 +1,8 @@
 import pyblish.api
-from rpm_pyblish_plugins.action_mesh_clearvertexcolors import MeshClearVertexColors
-from rpm_pyblish_plugins.action_plugin_openurl import OpenURL
-from rpm_pyblish_plugins.shared_funcs import get_mesh_by_name, has_vertex_colors
+
+from readyplayerme.pyblish_plugins.action_mesh_clearvertexcolors import MeshClearVertexColors
+from readyplayerme.pyblish_plugins.action_plugin_openurl import OpenURL
+from readyplayerme.pyblish_plugins.shared_funcs import get_mesh_by_name, has_vertex_colors
 
 
 class MeshVertexColors(pyblish.api.InstancePlugin):

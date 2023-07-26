@@ -2,10 +2,11 @@
 from typing import List
 
 import bpy
-import rpm_pyblish_plugins.constants as const
 import pyblish.api
-from bqt.utils import context_window
-from rpm_pyblish_plugins.shared_funcs import (
+
+import readyplayerme.pyblish_plugins.constants as const
+from readyplayerme.pyblish_plugins.shared_funcs import (
+    context_window,
     deselect_objects,
     get_mesh_by_name,
     get_vertex_groups_name,

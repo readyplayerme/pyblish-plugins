@@ -1,7 +1,8 @@
 """Validate the material has a specular value of 0.5."""
 import pyblish.api
-from rpm_pyblish_plugins.action_material_setspecular import MaterialSetSpecular
-from rpm_pyblish_plugins.action_plugin_openurl import OpenURL
+
+from readyplayerme.pyblish_plugins.action_material_setspecular import MaterialSetSpecular
+from readyplayerme.pyblish_plugins.action_plugin_openurl import OpenURL
 
 
 class MaterialSpecular(pyblish.api.InstancePlugin):

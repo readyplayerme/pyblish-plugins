@@ -1,7 +1,8 @@
 import bpy
 import pyblish.api
-from rpm_pyblish_plugins.action_object_setmode import ObjectSetMode
-from rpm_pyblish_plugins.action_plugin_openurl import OpenURL
+
+from readyplayerme.pyblish_plugins.action_object_setmode import ObjectSetMode
+from readyplayerme.pyblish_plugins.action_plugin_openurl import OpenURL
 
 
 class ObjectMode(pyblish.api.InstancePlugin):

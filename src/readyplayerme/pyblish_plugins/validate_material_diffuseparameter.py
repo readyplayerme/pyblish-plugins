@@ -1,8 +1,9 @@
 """Validate the materials' diffuse color parameter is pure white."""
 import numpy as np
 import pyblish.api
-from rpm_pyblish_plugins.action_material_setdiffuse import MaterialSetDiffuseWhite
-from rpm_pyblish_plugins.action_plugin_openurl import OpenURL
+
+from readyplayerme.pyblish_plugins.action_material_setdiffuse import MaterialSetDiffuseWhite
+from readyplayerme.pyblish_plugins.action_plugin_openurl import OpenURL
 
 
 class MaterialDiffuse(pyblish.api.InstancePlugin):

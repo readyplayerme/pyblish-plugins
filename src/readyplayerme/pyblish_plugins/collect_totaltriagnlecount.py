@@ -1,7 +1,8 @@
 """Collect meshes triangle count."""
 import bpy
 import pyblish.api
-from rpm_pyblish_plugins.shared_funcs import get_polygon_sides
+
+from readyplayerme.pyblish_plugins.shared_funcs import get_polygon_sides
 
 
 class CollectTotalTriangleCount(pyblish.api.ContextPlugin):

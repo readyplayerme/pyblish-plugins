@@ -2,8 +2,15 @@
 import bpy
 import numpy as np
 import pyblish.api
-from bqt.utils import context_window
-from rpm_pyblish_plugins.shared_funcs import deselect_objects, get_mesh_by_name, get_uvs, object_from_mesh, select_all
+
+from readyplayerme.pyblish_plugins.shared_funcs import (
+    context_window,
+    deselect_objects,
+    get_mesh_by_name,
+    get_uvs,
+    object_from_mesh,
+    select_all,
+)
 
 
 class MeshSelectUVsOutOfUVRange(pyblish.api.Action):
@@ -18,7 +25,6 @@ class MeshSelectUVsOutOfUVRange(pyblish.api.Action):
         deselect_objects()
         for result in context.data["results"]:
             if plugin == result["plugin"] and not result["action"]:
-
                 try:
                     mesh = get_mesh_by_name(context.data["current_item"])
                     obj = object_from_mesh(mesh)

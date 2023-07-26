@@ -1,8 +1,9 @@
 """Validate triangle count is within the budget for individual meshes."""
-import rpm_pyblish_plugins.constants as const
 import pyblish.api
-from rpm_pyblish_plugins.action_plugin_openurl import OpenURL
-from rpm_pyblish_plugins.shared_funcs import get_mesh_by_name, get_polygon_sides
+
+import readyplayerme.pyblish_plugins.constants as const
+from readyplayerme.pyblish_plugins.action_plugin_openurl import OpenURL
+from readyplayerme.pyblish_plugins.shared_funcs import get_mesh_by_name, get_polygon_sides
 
 
 class MeshTriangleCount(pyblish.api.InstancePlugin):

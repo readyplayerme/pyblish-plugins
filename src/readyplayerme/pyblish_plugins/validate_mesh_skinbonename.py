@@ -1,8 +1,9 @@
-import rpm_pyblish_plugins.constants as const
 import pyblish.api
-from rpm_pyblish_plugins.action_mesh_selectverticesinvalidbones import MeshSelectVerticesInvalidBones
-from rpm_pyblish_plugins.action_plugin_openurl import OpenURL
-from rpm_pyblish_plugins.shared_funcs import get_mesh_by_name, get_vertex_groups_name
+
+import readyplayerme.pyblish_plugins.constants as const
+from readyplayerme.pyblish_plugins.action_mesh_selectverticesinvalidbones import MeshSelectVerticesInvalidBones
+from readyplayerme.pyblish_plugins.action_plugin_openurl import OpenURL
+from readyplayerme.pyblish_plugins.shared_funcs import get_mesh_by_name, get_vertex_groups_name
 
 
 class MeshSkinBoneNames(pyblish.api.InstancePlugin):

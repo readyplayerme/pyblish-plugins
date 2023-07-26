@@ -1,7 +1,8 @@
 """Validate triangle count is within the budget for individual meshes."""
-import rpm_pyblish_plugins.constants as const
 import pyblish.api
-from rpm_pyblish_plugins.action_plugin_openurl import OpenURL
+
+import readyplayerme.pyblish_plugins.constants as const
+from readyplayerme.pyblish_plugins.action_plugin_openurl import OpenURL
 
 
 class CheckRequiredElements(pyblish.api.InstancePlugin):

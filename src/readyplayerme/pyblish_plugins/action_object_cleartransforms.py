@@ -1,37 +1,36 @@
 """Set the objects' transforms to their original state."""
 
-import mathutils
-
 import bpy
+import mathutils
 import pyblish.api
-from rpm_pyblish_plugins.shared_funcs import deselect_objects
+
+from readyplayerme.pyblish_plugins.shared_funcs import deselect_objects
 
 
 class ObjectClearTransforms(pyblish.api.Action):
     """Set the objects' transforms to their original state."""
+
     label = "Clear Transforms"
     icon = "eraser"
     on = "failedOrWarning"
 
     def process(self, context, plugin):
         deselect_objects()
-        for result in context.data['results']:
+        for result in context.data["results"]:
             if plugin == result["plugin"] and not result["action"]:
-                instance = result['instance']
+                instance = result["instance"]
                 try:
                     obj = bpy.data.objects[instance.name]
                 except KeyError as e:
-                    self.log.error(
-                        f"Action {self.label} failed. Object '{instance.name}' not found.")
+                    self.log.error(f"Action {self.label} failed. Object '{instance.name}' not found.")
                     raise ValueError(f"Action '{self.label}' failed for '{instance.name}'.") from e
                 clear_transforms(obj)
                 self.log.info(f"Successfully cleared transforms for '{instance.name}'.")
 
 
-def clear_transforms(obj: bpy.types.Object,
-                     use_location: bool = True,
-                     use_rotation: bool = True,
-                     use_scale: bool = True):
+def clear_transforms(
+    obj: bpy.types.Object, use_location: bool = True, use_rotation: bool = True, use_scale: bool = True
+):
     """Reset transforms.
 
     Location, rotation, and scale can individually be excluded from the reset.
@@ -73,6 +72,6 @@ def clear_transforms(obj: bpy.types.Object,
     for c in obj.children:
         c.matrix_local = matrix @ c.matrix_local
     obj.matrix_basis = basis[0] @ basis[1] @ basis[2]
-    if obj.type == 'ARMATURE':
+    if obj.type == "ARMATURE":
         for pose_bone in obj.pose.bones:
             pose_bone.matrix_basis = matrix

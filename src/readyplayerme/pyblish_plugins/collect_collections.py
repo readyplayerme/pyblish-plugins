@@ -16,9 +16,9 @@ class CollectCollections(pyblish.api.ContextPlugin):
             instance = context.create_instance(name=coll.name, family="Collection")  # Name in Blender.
             # instance.append(coll)
 
-            # TODO #70 get rid of LOD0 collection family, used in extractor rpm_pyblish_plugins. collect only ref to blender data.
-            instance.data['label'] = f"COL:{coll.name}"  # Display name in pyblish UI.
+            # TODO #70 get rid of LOD0 collection family, used in extractor readyplayerme.pyblish_plugins. collect only ref to blender data.
+            instance.data["label"] = f"COL:{coll.name}"  # Display name in pyblish UI.
             if coll.name == "LOD0":
-                instance.data['families'] = ["LOD0"]
-            instance.data['children'] = [c.name for c in coll.children]  # Nested collections.
-            instance.data['objects'] = [obj.name for obj in coll.objects]
+                instance.data["families"] = ["LOD0"]
+            instance.data["children"] = [c.name for c in coll.children]  # Nested collections.
+            instance.data["objects"] = [obj.name for obj in coll.objects]

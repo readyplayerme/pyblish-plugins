@@ -1,8 +1,9 @@
 import pyblish.api
-from rpm_pyblish_plugins.action_mesh_selectuvsoutofuvrange import MeshSelectUVsOutOfUVRange
-from rpm_pyblish_plugins.action_mesh_selectvertsoutofuvrange import MeshSelectVerticesOutOfUVRange
-from rpm_pyblish_plugins.action_plugin_openurl import OpenURL
-from rpm_pyblish_plugins.shared_funcs import get_mesh_by_name, get_uvs
+
+from readyplayerme.pyblish_plugins.action_mesh_selectuvsoutofuvrange import MeshSelectUVsOutOfUVRange
+from readyplayerme.pyblish_plugins.action_mesh_selectvertsoutofuvrange import MeshSelectVerticesOutOfUVRange
+from readyplayerme.pyblish_plugins.action_plugin_openurl import OpenURL
+from readyplayerme.pyblish_plugins.shared_funcs import get_mesh_by_name, get_uvs
 
 
 class MeshUVMapRange(pyblish.api.InstancePlugin):

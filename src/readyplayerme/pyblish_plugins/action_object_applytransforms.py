@@ -1,8 +1,8 @@
 """Apply all transforms to objects in Blender, keeping the objects' appearance."""
 import bpy
 import pyblish.api
-from bqt.utils import context_window
-from rpm_pyblish_plugins.shared_funcs import deselect_objects
+
+from readyplayerme.pyblish_plugins.shared_funcs import context_window, deselect_objects
 
 
 class ObjectApplyTransforms(pyblish.api.Action):

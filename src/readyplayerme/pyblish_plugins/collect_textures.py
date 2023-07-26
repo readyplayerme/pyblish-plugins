@@ -6,7 +6,7 @@ import bpy
 import numpy as np
 import pyblish.api
 
-import rpm_pyblish_plugins.constants as const
+import readyplayerme.pyblish_plugins.constants as const
 
 
 class CollectTextures(pyblish.api.ContextPlugin):
@@ -26,25 +26,25 @@ class CollectTextures(pyblish.api.ContextPlugin):
             instance = context.create_instance(name=img.name, family="Texture")  # Name in Blender.
             instance.append(img)
 
-            instance.data['material'] = mat.name if (mat := get_material_by_image(img)) else None
-            instance.data['filePath'] = img.filepath
-            instance.data['fileAbsolutePath'] = img.filepath_from_user()
-            instance.data['fileFormat'] = img.file_format
+            instance.data["material"] = mat.name if (mat := get_material_by_image(img)) else None
+            instance.data["filePath"] = img.filepath
+            instance.data["fileAbsolutePath"] = img.filepath_from_user()
+            instance.data["fileFormat"] = img.file_format
             # Get texture type from name, not from the channel its node is connected to.
             pattern = const.NAMING_PATTERNS[11].replace("<replace>", ".*")
             match = re.match(pattern, Path(img.filepath_from_user()).stem)
 
             tex_type = match[4] if match else "unknown"
-            instance.data['texType'] = tex_type
+            instance.data["texType"] = tex_type
             if tex_type in ["D", "C"]:
-                instance.data['families'] = ["BaseColor"]
+                instance.data["families"] = ["BaseColor"]
             elif tex_type == "M":
-                instance.data['families'] = ["Metallic"]
+                instance.data["families"] = ["Metallic"]
 
-            instance.data['hasData'] = img.has_data
-            instance.data['isEmbedded'] = bool(img.packed_file)
-            instance.data['resolution'] = (img.size[0], img.size[1])
-            instance.data['colorspace'] = img.colorspace_settings.name
+            instance.data["hasData"] = img.has_data
+            instance.data["isEmbedded"] = bool(img.packed_file)
+            instance.data["resolution"] = (img.size[0], img.size[1])
+            instance.data["colorspace"] = img.colorspace_settings.name
 
 
 def get_pixels(image: bpy.types.Image) -> np.ndarray:

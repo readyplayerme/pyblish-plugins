@@ -3,8 +3,9 @@
 There should be no animations in the file.
 """
 import pyblish.api
-from rpm_pyblish_plugins.action_animations_delete import AnimationsClear
-from rpm_pyblish_plugins.action_plugin_openurl import OpenURL
+
+from readyplayerme.pyblish_plugins.action_animations_delete import AnimationsClear
+from readyplayerme.pyblish_plugins.action_plugin_openurl import OpenURL
 
 
 class AnimationsInFile(pyblish.api.InstancePlugin):

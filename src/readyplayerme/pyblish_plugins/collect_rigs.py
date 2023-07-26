@@ -4,7 +4,7 @@ from typing import List
 import bpy
 import pyblish.api
 
-from rpm_pyblish_plugins.shared_funcs import get_collections, get_transforms
+from readyplayerme.pyblish_plugins.shared_funcs import get_collections, get_transforms
 
 
 class CollectRigs(pyblish.api.ContextPlugin):
@@ -16,8 +16,8 @@ class CollectRigs(pyblish.api.ContextPlugin):
     hosts = ["blender"]
 
     def process(self, context):
-        rigs = [obj for obj in bpy.data.objects if obj.type == 'ARMATURE']
-        context.data['nArmatures'] = len(rigs)
+        rigs = [obj for obj in bpy.data.objects if obj.type == "ARMATURE"]
+        context.data["nArmatures"] = len(rigs)
         for armature in rigs:
             mod_affected = {child for child in bpy.data.objects if child.find_armature() == armature}
             children = get_children(armature)
@@ -27,12 +27,12 @@ class CollectRigs(pyblish.api.ContextPlugin):
             instance.append(armature)
 
             # TODO #73 Only collect armature reference, not armature properties.
-            instance.data['label'] = f"RIG:{armature.name}"  # Display name in pyblish UI.
-            instance.data['collections'] = get_collections(armature)
+            instance.data["label"] = f"RIG:{armature.name}"  # Display name in pyblish UI.
+            instance.data["collections"] = get_collections(armature)
             # Collect parent.
-            instance.data['parent'] = armature.parent
-            instance.data['children'] = children
-            instance.data['bones'] = armature.data.bones.keys()
+            instance.data["parent"] = armature.parent
+            instance.data["children"] = children
+            instance.data["bones"] = armature.data.bones.keys()
             # Object transforms.
             for key, value in get_transforms(armature).items():
                 instance.data[key] = value

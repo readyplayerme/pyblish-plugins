@@ -1,6 +1,7 @@
 import pyblish.api
-from rpm_pyblish_plugins.action_plugin_openurl import OpenURL
-from rpm_pyblish_plugins.action_texture_setembedding import TextureSetEmbedding
+
+from readyplayerme.pyblish_plugins.action_plugin_openurl import OpenURL
+from readyplayerme.pyblish_plugins.action_texture_setembedding import TextureSetEmbedding
 
 
 class TextureEmbedding(pyblish.api.InstancePlugin):

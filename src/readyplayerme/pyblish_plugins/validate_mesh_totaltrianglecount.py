@@ -1,6 +1,7 @@
 """Validate triangle count is within the budget for total meshes."""
 import pyblish.api
-from rpm_pyblish_plugins.action_plugin_openurl import OpenURL
+
+from readyplayerme.pyblish_plugins.action_plugin_openurl import OpenURL
 
 
 class TotalTriangleCount(pyblish.api.InstancePlugin):

@@ -1,8 +1,14 @@
 """Normalize the skin weights for vertices of meshes in the Blender file."""
 import bpy
 import pyblish.api
-from bqt.utils import context_window
-from rpm_pyblish_plugins.shared_funcs import deselect_objects, get_mesh_by_name, object_from_mesh, select_all_bmesh
+
+from readyplayerme.pyblish_plugins.shared_funcs import (
+    context_window,
+    deselect_objects,
+    get_mesh_by_name,
+    object_from_mesh,
+    select_all_bmesh,
+)
 
 
 class MeshNormalizeWeights(pyblish.api.Action):

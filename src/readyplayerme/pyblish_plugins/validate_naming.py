@@ -1,7 +1,8 @@
 """Validate naming conventions."""
-import rpm_pyblish_plugins.constants as const
 import pyblish.api
-from rpm_pyblish_plugins.action_plugin_openurl import OpenURL
+
+import readyplayerme.pyblish_plugins.constants as const
+from readyplayerme.pyblish_plugins.action_plugin_openurl import OpenURL
 
 
 class NamingConvention(pyblish.api.InstancePlugin):
@@ -27,7 +28,6 @@ class NamingConvention(pyblish.api.InstancePlugin):
     current_piece = const.NAMES
 
     def process(self, instance):
-
         name_found = instance.name in self.current_piece
 
         if not name_found:

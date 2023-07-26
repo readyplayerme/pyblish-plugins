@@ -1,7 +1,8 @@
 import pyblish.api
-from rpm_pyblish_plugins.action_mesh_renameuvmap import MeshRenameUVMap
-from rpm_pyblish_plugins.action_plugin_openurl import OpenURL
-from rpm_pyblish_plugins.shared_funcs import get_mesh_by_name, get_uvmap_names
+
+from readyplayerme.pyblish_plugins.action_mesh_renameuvmap import MeshRenameUVMap
+from readyplayerme.pyblish_plugins.action_plugin_openurl import OpenURL
+from readyplayerme.pyblish_plugins.shared_funcs import get_mesh_by_name, get_uvmap_names
 
 
 class MeshUVMapName(pyblish.api.InstancePlugin):

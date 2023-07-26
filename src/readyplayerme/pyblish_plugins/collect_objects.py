@@ -3,8 +3,8 @@
 import bpy
 import pyblish.api
 
-import rpm_pyblish_plugins.constants as const
-from rpm_pyblish_plugins.shared_funcs import get_collections, get_transforms
+import readyplayerme.pyblish_plugins.constants as const
+from readyplayerme.pyblish_plugins.shared_funcs import get_collections, get_transforms
 
 
 class CollectObjects(pyblish.api.ContextPlugin):

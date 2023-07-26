@@ -1,7 +1,7 @@
 """Set Blender objects into Object mode."""
 import bpy
 import pyblish.api
-from bqt.utils import context_window
+from readyplayerme.pyblish_plugins.shared_funcs import context_window
 
 
 class ObjectSetMode(pyblish.api.Action):

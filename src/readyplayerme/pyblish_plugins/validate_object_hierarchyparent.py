@@ -1,6 +1,7 @@
 """Validate that the parent of rigged objects is its armature."""
 import pyblish.api
-import rpm_pyblish_plugins.constants as const
+
+import readyplayerme.pyblish_plugins.constants as const
 
 
 class ObjectHierarchyParent(pyblish.api.InstancePlugin):

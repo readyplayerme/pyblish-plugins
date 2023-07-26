@@ -1,8 +1,9 @@
 """Select edges that are not connected to any faces."""
 import bpy
 import pyblish.api
-from bqt.utils import context_window
-from rpm_pyblish_plugins.shared_funcs import (
+
+from readyplayerme.pyblish_plugins.shared_funcs import (
+    context_window,
     deselect_objects,
     get_loose_edges,
     get_mesh_by_name,

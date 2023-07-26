@@ -1,7 +1,8 @@
 import numpy as np
 import pyblish.api
-from rpm_pyblish_plugins.action_mesh_selectzerolengthedges import MeshSelectZeroLengthEdges
-from rpm_pyblish_plugins.shared_funcs import get_mesh_by_name, get_edge_lengths
+
+from readyplayerme.pyblish_plugins.action_mesh_selectzerolengthedges import MeshSelectZeroLengthEdges
+from readyplayerme.pyblish_plugins.shared_funcs import get_edge_lengths, get_mesh_by_name
 
 
 class MeshTopologyZeroLengthEdges(pyblish.api.InstancePlugin):
@@ -21,7 +22,9 @@ class MeshTopologyZeroLengthEdges(pyblish.api.InstancePlugin):
         edge_lengths = get_edge_lengths(mesh)
         edge_indices = np.argwhere(np.isclose(edge_lengths, 0.0)).flatten()
         if edge_indices.size:  # Can't use any(), because it misses index 0.
-            self.log.warning(f"{edge_indices.shape[0]} Edges with zero length detected. "
-                             f"You can use the {MeshSelectZeroLengthEdges.label} actions in the context menu "
-                             "of this validation to select the edges. "
-                             f"Invalid edge indices: {edge_indices.tolist()}")
+            self.log.warning(
+                f"{edge_indices.shape[0]} Edges with zero length detected. "
+                f"You can use the {MeshSelectZeroLengthEdges.label} actions in the context menu "
+                "of this validation to select the edges. "
+                f"Invalid edge indices: {edge_indices.tolist()}"
+            )

@@ -1,7 +1,8 @@
 """Set color spaces of textures correctly."""
 import bpy
-import rpm_pyblish_plugins.constants as const
 import pyblish.api
+
+import readyplayerme.pyblish_plugins.constants as const
 
 
 class TextureSetColorSpace(pyblish.api.Action):

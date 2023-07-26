@@ -1,9 +1,10 @@
 import numpy as np
 import pyblish.api
-from rpm_pyblish_plugins.action_mesh_normalizeweights import MeshNormalizeWeights
-from rpm_pyblish_plugins.action_mesh_selectvertsbynonnormalweights import MeshSelectVerticesByNonNormalWeights
-from rpm_pyblish_plugins.action_plugin_openurl import OpenURL
-from rpm_pyblish_plugins.shared_funcs import get_mesh_by_name, get_skin_weights
+
+from readyplayerme.pyblish_plugins.action_mesh_normalizeweights import MeshNormalizeWeights
+from readyplayerme.pyblish_plugins.action_mesh_selectvertsbynonnormalweights import MeshSelectVerticesByNonNormalWeights
+from readyplayerme.pyblish_plugins.action_plugin_openurl import OpenURL
+from readyplayerme.pyblish_plugins.shared_funcs import get_mesh_by_name, get_skin_weights
 
 
 class MeshSkinWeightsNormalization(pyblish.api.InstancePlugin):

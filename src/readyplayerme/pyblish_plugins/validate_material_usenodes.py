@@ -1,7 +1,8 @@
 """Validate the material uses shader nodes in Blender."""
 import pyblish.api
-from rpm_pyblish_plugins.action_material_setusenodes import MaterialSetUseNodes
-from rpm_pyblish_plugins.action_plugin_openurl import OpenURL
+
+from readyplayerme.pyblish_plugins.action_material_setusenodes import MaterialSetUseNodes
+from readyplayerme.pyblish_plugins.action_plugin_openurl import OpenURL
 
 
 class MaterialUseNodes(pyblish.api.InstancePlugin):

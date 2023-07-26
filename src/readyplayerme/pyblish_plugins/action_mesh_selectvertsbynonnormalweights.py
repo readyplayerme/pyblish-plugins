@@ -2,8 +2,15 @@
 import bpy
 import numpy as np
 import pyblish.api
-from bqt.utils import context_window
-from rpm_pyblish_plugins.shared_funcs import deselect_all, deselect_objects, get_mesh_by_name, get_skin_weights, object_from_mesh
+
+from readyplayerme.pyblish_plugins.shared_funcs import (
+    context_window,
+    deselect_all,
+    deselect_objects,
+    get_mesh_by_name,
+    get_skin_weights,
+    object_from_mesh,
+)
 
 
 class MeshSelectVerticesByNonNormalWeights(pyblish.api.Action):

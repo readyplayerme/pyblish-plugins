@@ -2,7 +2,7 @@
 import bpy
 import pyblish.api
 
-from rpm_pyblish_plugins.shared_funcs import object_from_mesh
+from readyplayerme.pyblish_plugins.shared_funcs import object_from_mesh
 
 
 class CollectMeshes(pyblish.api.ContextPlugin):

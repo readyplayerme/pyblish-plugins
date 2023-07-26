@@ -1,8 +1,9 @@
 """Validate object's location, rotation, and scale are neutral."""
 import pyblish.api
-from rpm_pyblish_plugins.action_object_applytransforms import ObjectApplyTransforms
-from rpm_pyblish_plugins.action_object_cleartransforms import ObjectClearTransforms
-from rpm_pyblish_plugins.action_plugin_openurl import OpenURL
+
+from readyplayerme.pyblish_plugins.action_object_applytransforms import ObjectApplyTransforms
+from readyplayerme.pyblish_plugins.action_object_cleartransforms import ObjectClearTransforms
+from readyplayerme.pyblish_plugins.action_plugin_openurl import OpenURL
 
 
 class ObjectTransforms(pyblish.api.InstancePlugin):

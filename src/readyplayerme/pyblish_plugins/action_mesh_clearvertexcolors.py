@@ -1,6 +1,7 @@
 """Remove vertex colors from meshes."""
 import pyblish.api
-from rpm_pyblish_plugins.shared_funcs import get_mesh_by_name
+
+from readyplayerme.pyblish_plugins.shared_funcs import get_mesh_by_name
 
 
 class MeshClearVertexColors(pyblish.api.Action):

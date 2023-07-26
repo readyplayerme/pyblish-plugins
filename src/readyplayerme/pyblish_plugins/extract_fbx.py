@@ -1,8 +1,9 @@
 """Export FBX file."""
-import rpm_pyblish_plugins.constants as const
 import pyblish.api
 from pyblend import file_io
 from ready_player_me.configs import fbx as presets
+
+import readyplayerme.pyblish_plugins.constants as const
 
 
 class ExportFBX(pyblish.api.ContextPlugin):

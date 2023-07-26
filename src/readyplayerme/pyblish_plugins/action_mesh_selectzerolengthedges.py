@@ -2,8 +2,9 @@
 import bpy
 import numpy as np
 import pyblish.api
-from bqt.utils import context_window
-from rpm_pyblish_plugins.shared_funcs import (
+
+from readyplayerme.pyblish_plugins.shared_funcs import (
+    context_window,
     deselect_objects,
     get_edge_lengths,
     get_mesh_by_name,

@@ -1,8 +1,14 @@
 """Limit the number of bone influences on the vertices of meshes."""
 import bpy
 import pyblish.api
-from bqt.utils import context_window
-from rpm_pyblish_plugins.shared_funcs import deselect_objects, get_mesh_by_name, object_from_mesh, select_all_bmesh
+
+from readyplayerme.pyblish_plugins.shared_funcs import (
+    context_window,
+    deselect_objects,
+    get_mesh_by_name,
+    object_from_mesh,
+    select_all_bmesh,
+)
 
 
 class MeshLimitBoneInfluences(pyblish.api.Action):

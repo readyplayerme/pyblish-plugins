@@ -1,8 +1,9 @@
 """Export to GLB format."""
-import rpm_pyblish_plugins.constants as const
 import pyblish.api
 from pyblend import file_io
 from ready_player_me.configs import gltf as presets
+
+import readyplayerme.pyblish_plugins.constants as const
 
 
 class ExportGLB(pyblish.api.ContextPlugin):

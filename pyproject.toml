@@ -1,0 +1,228 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "readyplayerme-pyblish-plugins"
+dynamic = ["version"]
+description = "Pyblish plugins for Ready Player Me asset validation within 3D content creation software."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+keywords = ["ready player me", "3D", "validation", "pyblish", "blender"]
+authors = [
+  { name = "Ready Player Me", email = "info@readyplayer.me" },
+]
+maintainers = [
+  { name = "Olaf Haag", email = "olaf@readyplayer.me" },
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = [
+  "pyblish-base>=1.8.11",
+  #"pydantic>=2.1.1",
+]
+
+[project.optional-dependencies]
+tests = [
+  "pytest",
+]
+dev = [
+  "readyplayerme-pyblish-plugins[tests]",
+  "pre-commit",
+]
+devblend = [
+  "readyplayerme-pyblish-plugins[dev]",
+  "numpy~=1.23.5",
+  "bpy~=3.6.0"
+]
+
+[project.urls]
+Documentation = "https://github.com/readyplayerme/pyblish-plugins#readme"
+Issues = "https://github.com/readyplayerme/pyblish-plugins/issues"
+Source = "https://github.com/readyplayerme/pyblish-plugins"
+
+[tool.hatch.version]
+path = "src/readyplayerme/pyblish_plugins/__about__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/readyplayerme"]
+
+[tool.hatch.envs.default]
+dependencies = [
+  "coverage[toml]>=6.5",
+  "pytest",
+]
+features = [
+  "devblend",
+]
+post-install-commands = [
+  "install-precommit",
+]
+
+[tool.hatch.envs.default.scripts]
+install-precommit = "pre-commit install"
+test = "pytest {args:tests}"
+test-cov = "coverage run -m pytest {args:tests}"
+cov-report = [
+  "- coverage combine",
+  "coverage report",
+]
+cov = [
+  "test-cov",
+  "cov-report",
+]
+
+[[tool.hatch.envs.all.matrix]]
+python = ["3.10"]
+
+[tool.hatch.envs.lint]
+detached = true
+dependencies = [
+  "black>=23.7.0",
+  "mypy>=1.4.1",
+  "ruff>=0.0.280",
+]
+[tool.hatch.envs.lint.scripts]
+typing = "mypy --install-types --non-interactive {args:src/readyplayerme/pyblish_plugins tests}"
+style = [
+  "ruff {args:.}",
+  "black --check --diff {args:.}",
+]
+fmt = [
+  "black {args:.}",
+  "ruff --fix {args:.}",
+  "style",
+]
+all = [
+  "style",
+  "typing",
+]
+
+[tool.black]
+target-versions = ["py310"]
+line-length = 120
+skip-string-normalization = false
+
+[tool.ruff]
+target-version = "py310"
+line-length = 120
+select = [
+  "A",
+  "ARG",
+  "B",
+  "C",
+  "DTZ",
+  "E",
+  "EM",
+  "F",
+  "FBT",
+  "I",
+  "ICN",
+  "ISC",
+  "N",
+  "PLC",
+  "PLE",
+  "PLR",
+  "PLW",
+  "Q",
+  "RUF",
+  "S",
+  "T",
+  "TID",
+  "UP",
+  "W",
+  "YTT",
+]
+ignore = [
+  # Allow non-abstract empty methods in abstract base classes
+  "B027",
+  # Allow boolean positional values in function calls, like `dict.get(... True)`
+  "FBT003",
+  # Ignore checks for possible passwords
+  "S105", "S106", "S107",
+  # Ignore complexity
+  "C901", "PLR0911", "PLR0912", "PLR0913", "PLR0915",
+]
+unfixable = [
+  # Don't touch unused imports
+  "F401",
+]
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+]
+
+[tool.ruff.isort]
+known-first-party = ["readyplayerme"]
+
+[tool.ruff.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+[tool.ruff.per-file-ignores]
+# Tests can use magic values, assertions, and relative imports
+"tests/**/*" = ["PLR2004", "S101", "TID252"]
+
+[tool.mypy]
+plugins = ["pydantic.mypy"]
+
+follow_imports = "silent"
+warn_redundant_casts = true
+warn_unused_ignores = true
+disallow_any_generics = true
+check_untyped_defs = true
+no_implicit_reexport = true
+
+# for strict mypy set to true:
+disallow_untyped_defs = false
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
+warn_untyped_fields = true
+
+[tool.coverage.run]
+source_pkgs = ["readyplayerme/pyblish_plugins", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/readyplayerme/pyblish_plugins/__init__.py",
+  "src/readyplayerme/pyblish_plugins/__about__.py",
+]
+
+[tool.coverage.paths]
+readyplayerme_pylblish_plugins = ["src/readyplayerme/pyblish_plugins", "*/pyblish-plugins/src/readyplayerme/pyblish_plugins"]
+tests = ["tests", "*/pyblish_plugins/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]

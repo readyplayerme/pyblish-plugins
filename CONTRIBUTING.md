@@ -42,28 +42,34 @@ The [`good first issue` label](https://github.com/readyplayerme/pyblish-plugins/
 
 2. [Clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) the (forked) repository to your local machine.
 
-3. In your IDE, it's best to use a Python environment that fits Blender's Python version.
-From the [Blender LTS versions](https://www.blender.org/download/lts/) that are currently maintained, choose the older one to determine the Python version.
-We encourage using an environment manager such as [conda](https://docs.conda.io/en/latest/) or [pyenv](https://github.com/pyenv/pyenv).
+3. We use [hatch](https://hatch.pypa.io/) as the Python package build backend and Python project manager.
+    Therefore, you need to install it first.  
+    It's best to install hatch to a separate Python _environment_ to avoid conflicts with other Python projects and keep your system Python clean.
+    We encourage using an environment manager such as [conda](https://docs.conda.io/en/latest/), [micromamba](https://mamba.readthedocs.io/en/latest/user_guide/micromamba.html), or [poetry](https://python-poetry.org/).  
+    When you have an environment activated, you can install hatch.
+    See https://hatch.pypa.io/latest/install/ for more information on how to do it.
 
-4. Install or update the developer dependencies into your Python environment by navigating to the repository in a terminal and executing `pip install -e .[dev]`.
+4. Once hatch is setup, navigate to the cloned repo, and execute `hatch env create`.
+    This will create a new environment and install the dependencies for development into it.
+    You can get the new environment path and add it to your IDE as a Python interpreter for this repo, `hatch run python -c "import sys;print(sys.executable)"`.
 
-5. Run `pre-commit install` to set up the git hook scripts.
+5. Install the package contained in this repo into Blender's user script folder as an editable package. <!-- TODO Explain how to do it -->
+    <!-- TODO Point to readme for explanations on how to use the package in Blender -->
 
-6. Install the plugins into Blender's user script folder as an editable package. <!-- TODO Explain how to do it -->
+6. Create a working branch and prefix its name with _fix/_ if it's a bug fix, or _feature/_ if it's a new feature.
+    Start with your changes!
 
-7. Create a working branch and prefix its name with _fix/_ if it's a bug fix, or _feature/_ if it's a new feature.
-Start with your changes!
+7. Write or update tests for your changes. <!-- TODO Explain how we do tests -->
 
-8. Write or update tests for your changes. <!-- TODO Explain how we do tests -->
-
-9. Run tests and code linting & formatting locally.
+8. Run tests with `hatch run test` and code linting & formatting with `hatch run lint:all` locally.
 
 ### Commit your update
 
 Once you are happy with your changes, it's time to commit them.
 Use [Conventional Commit messages](https://www.conventionalcommits.org/en/v1.0.0/).  
 [Sign](https://docs.github.com/en/authentication/managing-commit-signature-verification/signing-commits) your commits!
+
+If you followed the steps above, you should have a pre-commit hook installed that will automatically run the tests and linting before a commit succeeds.
 
 Keep your individual commits small, so any breaking change can more easily be traced back to a commit.
 A commit ideally only changes one single responsibility at a time.

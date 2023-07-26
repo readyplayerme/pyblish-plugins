@@ -87,12 +87,14 @@ dependencies = [
   "black>=23.7.0",
   "mypy>=1.4.1",
   "ruff>=0.0.280",
+  "docstr-coverage>=2.3.0",
 ]
 [tool.hatch.envs.lint.scripts]
 typing = "mypy --install-types --non-interactive {args:src/readyplayerme/pyblish_plugins tests}"
 style = [
   "ruff {args:.}",
   "black --check --diff {args:.}",
+  "docstr-coverage {args:.}",
 ]
 fmt = [
   "black {args:.}",

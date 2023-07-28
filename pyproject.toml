@@ -7,7 +7,7 @@ name = "readyplayerme-pyblish-plugins"
 dynamic = ["version"]
 description = "Pyblish plugins for Ready Player Me asset validation within 3D content creation software."
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = "~=3.10"
 license = "MIT"
 keywords = ["ready player me", "3D", "validation", "pyblish", "blender"]
 authors = [
@@ -54,6 +54,7 @@ path = "src/readyplayerme/pyblish_plugins/__about__.py"
 packages = ["src/readyplayerme"]
 
 [tool.hatch.envs.default]
+python = "3.10"
 dependencies = [
   "coverage[toml]>=6.5",
   "pytest",

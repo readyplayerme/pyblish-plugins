@@ -42,22 +42,52 @@ The [`good first issue` label](https://github.com/readyplayerme/pyblish-plugins/
 
 2. [Clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) the (forked) repository to your local machine.
 
-3. We use [hatch](https://hatch.pypa.io/) as the Python package build backend and Python project manager.
-    Therefore, you need to install it first.  
-    It's best to install hatch to a separate Python _environment_ to avoid conflicts with other Python projects and keep your system Python clean.
+3. It's best to use a separate Python _environment_ for development to avoid conflicts with other Python projects and keep your system Python clean.
     We encourage using an environment manager such as [conda](https://docs.conda.io/en/latest/), [micromamba](https://mamba.readthedocs.io/en/latest/user_guide/micromamba.html), or [poetry](https://python-poetry.org/).  
-    When you have an environment activated, you can install hatch.
-    See https://hatch.pypa.io/latest/install/ for more information on how to do it.
+    You need a Python version compatible with Blender, which is 3.10 for Blender 3.3 & 3.6 LTS at the time of writing.
 
-4. Once hatch is setup, navigate to the cloned repo, and execute `hatch env create`.
-    This will create a new environment and install the dependencies for development into it.
-    You can get the new environment path and add it to your IDE as a Python interpreter for this repo, `hatch run python -c "import sys;print(sys.executable)"`.
+4. We use [hatch](https://hatch.pypa.io/) as the Python package build backend and Python project manager.
+    We recommend to install it as well as it will provide you with additional development environments.
+    However, it's not a necessity.
+    See https://hatch.pypa.io/latest/install/ for more information on how to install it into your Python environment.
 
-5. Install the package contained in this repo into Blender's user script folder as an editable package. <!-- TODO Explain how to do it -->
-    <!-- TODO Point to readme for explanations on how to use the package in Blender -->
+    Once you setup hatch, navigate to the cloned repository, and execute `hatch env create`.
+    This will create yet a new environment and install the development dependencies into it.
+    You can get the new environment path and add it to your IDE as a Python interpreter for this repository, `hatch run python -c "import sys;print(sys.executable)"`.
+
+    If you decided against using hatch, we still recommend installing the pre-commit hooks.
+
+5. Install the package contained in this repository into Blender's user script folder as an editable package.
+    For example, from within Blender's Python console:
+
+    ```python
+    import importlib
+    import subprocess
+    import sys
+    from pathlib import Path
+
+    import bpy
+
+    # Define the path to the repository's folder.
+    repo_path = "path/to/cloned/repo"  # Edit this!
+
+    # Define the path to the user script's folder and make sure it exists.
+    target_path = Path(bpy.utils.script_path_user()) / "addons" / "modules"
+    target_path.mkdir(parents=True, exist_ok=True)
+
+    # Install the package in editable mode
+    python_binary = sys.executable
+    subprocess.run([python_binary, "-m", "pip", "install", "-e", "--target", str(target_path), repo_path])
+
+    # Make blender reload the script paths to include our newly installed package.
+    importlib.invalidate_caches()
+    bpy.ops.script.reload()
+    ```
+
+    Have a look at the README for more information on how to use the plugins.
 
 6. Create a working branch and prefix its name with _fix/_ if it's a bug fix, or _feature/_ if it's a new feature.
-    Start with your changes!
+    Start with your changes!  
 
 7. Write or update tests for your changes. <!-- TODO Explain how we do tests -->
 

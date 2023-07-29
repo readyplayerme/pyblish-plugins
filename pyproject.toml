@@ -33,11 +33,11 @@ tests = [
   "pytest",
 ]
 dev = [
-  "readyplayerme-pyblish-plugins[tests]",
+  "readyplayerme.pyblish_plugins[tests]",
   "pre-commit",
 ]
 devblend = [
-  "readyplayerme-pyblish-plugins[dev]",
+  "readyplayerme.pyblish_plugins[dev]",
   "numpy~=1.23.5",
   "bpy~=3.6.0"
 ]

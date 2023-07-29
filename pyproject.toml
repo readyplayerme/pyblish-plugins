@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "readyplayerme-pyblish-plugins"
+name = "readyplayerme.pyblish_plugins"
 dynamic = ["version"]
 description = "Pyblish plugins for Ready Player Me asset validation within 3D content creation software."
 readme = "README.md"

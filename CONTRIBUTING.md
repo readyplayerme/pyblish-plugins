@@ -77,7 +77,7 @@ The [`good first issue` label](https://github.com/readyplayerme/pyblish-plugins/
 
     # Install the package in editable mode
     python_binary = sys.executable
-    subprocess.run([python_binary, "-m", "pip", "install", "-e", "--target", str(target_path), repo_path])
+    subprocess.run([python_binary, "-m", "pip", "install", "--target", str(target_path), "-e", repo_path])
 
     # Make blender reload the script paths to include our newly installed package.
     importlib.invalidate_caches()

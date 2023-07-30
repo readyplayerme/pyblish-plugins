@@ -74,3 +74,6 @@ for plugin in plugins:
 ```
 
 The output of the validation is send to the console.
+
+The package also contains JSON configuration files for the plugins that can be used in conjunction with the third-party [pyblish-config](https://github.com/hannesdelbeke/pyblish-plugin-manager) package.
+This is recommended to run validations specific to the supported asset types.

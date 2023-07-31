@@ -19,12 +19,12 @@ You should also be familiar with [Pydantic](https://docs.pydantic.dev/).
 
 ## Issues
 
-#### Create a new issue
+### Create a new issue
 
 If you spot a problem with the plugins, [search if an issue already exists](https://docs.github.com/en/github/searching-for-information-on-github/searching-on-github/searching-issues-and-pull-requests#search-by-the-title-body-or-comments).
 If a related issue doesn't exist, you can open a new issue using a relevant [issue form](https://github.com/readyplayerme/pyblish-plugins/issues/new/choose).
 
-#### Solve an issue
+### Solve an issue
 
 Scan through our [existing issues](https://github.com/readyplayerme/pyblish-plugins/issues) to find one that interests you.
 You can narrow down the search using `labels` as filters.
@@ -49,7 +49,7 @@ The [`good first issue` label](https://github.com/readyplayerme/pyblish-plugins/
 4. We use [hatch](https://hatch.pypa.io/) as the Python package build backend and Python project manager.
     We recommend to install it as well as it will provide you with additional development environments.
     However, it's not a necessity.
-    See https://hatch.pypa.io/latest/install/ for more information on how to install it into your Python environment.
+    See [hatch's installation instructions](https://hatch.pypa.io/latest/install/) for more information on how to install it into your Python environment.
 
     Once you setup hatch, navigate to the cloned repository, and execute `hatch env create`.
     This will create yet a new environment and install the development dependencies into it.
